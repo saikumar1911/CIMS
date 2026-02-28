@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Campus Resolver</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+<!-- 🔥 NAVBAR -->
+<nav class="navbar">
+
+    <!-- LEFT -->
+    <div class="nav-left">
+        <h2>Campus Resolver</h2>
+    </div>
+
+    <!-- CENTER -->
+    <div class="nav-center">
+        <a href="dashboard.html" id="dashboardLink">Dashboard</a>
+        <a href="submit.html" id="submitLink">Submit Complaint</a>
+        <a href="my-complaints.html" id="myComplaintsLink">My Complaints</a>
+
+        
+       
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+        <a href="index.html" id="logoutBtn">Logout</a>
+        <button id="adminBtn" style="display:none;">Admin Panel</button>
+    </div>
+
+</nav>
+
+<!-- 🔥 MAIN DASHBOARD -->
+<div class="dashboard-container">
+    <h1 id="welcomeText">Welcome</h1>
+    <p>See how your complaints are doing</p>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Complaints: <span id="totalCount">0</span></h3>
+        </div>
+
+        <div class="card">
+            <h3>Resolved: <span id="resolvedCount">0</span></h3>
+        </div>
+
+        <div class="card">
+            <h3>Pending: <span id="pendingCount">0</span></h3>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-container tagline-section">
+    <h1>Raise it. Track it. Fix it.</h1>
+    <p>Your voice matters. Turning concerns into actionable solutions.</p>
+</div>
+
+<script type="module" src="dashboard.js"></script>
+
+</body>
+</html>
