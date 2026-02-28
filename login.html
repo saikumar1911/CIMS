@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Campus Resolver</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+
+<!-- Single Image Background - ONLY addition to HTML -->
+<div class="background">
+    <div class="background-image"></div>
+</div>
+
+<div class="form-container">
+    <h2>Student Login</h2>
+
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Email" required>
+
+        <div class="password-container">
+            <input type="password" id="password" placeholder="Password" required>
+            <span class="toggle-password" onclick="togglePassword()">👁</span>
+        </div>
+
+        <small id="password-message">Password must be at least 6 characters</small>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p>Don't have an account? <a href="register.html">Register</a></p>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+   apiKey: "AIzaSyDD4PDJ-2dGabACe5Tn1y4L62KRqQY2_2E",
+  authDomain: "cims-project-a2ab9.firebaseapp.com",
+  projectId: "cims-project-a2ab9",
+  storageBucket: "cims-project-a2ab9.firebasestorage.app",
+  messagingSenderId: "88316003268",
+  appId: "1:88316003268:web:658e5cac8459c8b6785a91",
+  measurementId: "G-J36LJTNLX9"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+    alert("Login Successful ✅");
+
+    window.location.href = "dashboard.html";
+
+  } catch (error) {
+    alert("Login Failed: " + error.message);
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const password = document.getElementById("password");
+    const toggle = document.querySelector(".toggle-password");
+    const message = document.getElementById("password-message");
+
+    // Show / Hide Password
+    toggle.addEventListener("click", () => {
+        if (password.type === "password") {
+            password.type = "text";
+        } else {
+            password.type = "password";
+        }
+    });
+
+    // Password length validation
+    password.addEventListener("input", () => {
+        if (password.value.length < 6) {
+            message.style.color = "red";
+        } else {
+            message.style.color = "green";
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
